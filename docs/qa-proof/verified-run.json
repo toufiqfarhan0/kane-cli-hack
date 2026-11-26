@@ -1,24 +1,77 @@
 {
-  "startedAt": "2026-11-26T12:51:47.209Z",
-  "finishedAt": "2026-11-26T12:55:32.656Z",
+  "startedAt": "2026-11-26T14:05:04.512Z",
+  "finishedAt": "2026-11-26T14:15:29.332Z",
   "verdict": "passed",
   "changeRequest": "the requested change",
   "agent": "Cursor",
   "attempt": 1,
   "maxAttempts": 3,
-  "changedFiles": [],
+  "changedFiles": [
+    "apps/web/public/qa/verified-run.json",
+    "apps/web/src/Router.tsx",
+    "apps/web/src/theme.css",
+    "apps/web/src/views/ProductDeck.tsx",
+    "apps/web/src/views/ProductionInspector.tsx",
+    "apps/web/src/views/QaGuardrails.tsx",
+    "apps/web/src/views/RenderLibrary.tsx",
+    "apps/web/src/views/ShortStudio.tsx",
+    "apps/web/src/widgets/StageChecklist.tsx"
+  ],
   "affectedFlows": [
+    "wizard",
+    "validation",
     "landing",
+    "api_health",
     "gallery"
   ],
   "unmappedFiles": [],
   "skippedFlows": [],
   "flows": [
     {
+      "flow": "wizard",
+      "status": "passed",
+      "shareUrl": null,
+      "runDir": "C:\\Users\\toufi/.testmuai/kaneai/sessions\\e5f406a3-4b03-4456-bb27-54fd016d3e50\\runs\\3",
+      "reason": "Objective completed",
+      "failedStep": null,
+      "deltas": [
+        {
+          "key": "launch_heading",
+          "baseline": "Ready to create OLIPOP Vintage Cola",
+          "candidate": "Ready to create OLIPOP Vintage Cola",
+          "verdict": "SAME"
+        },
+        {
+          "key": "wizard_url",
+          "baseline": "http://localhost:5173/",
+          "candidate": "http://localhost:5173/",
+          "verdict": "SAME"
+        }
+      ],
+      "infraError": null
+    },
+    {
+      "flow": "validation",
+      "status": "passed",
+      "shareUrl": null,
+      "runDir": "C:\\Users\\toufi/.testmuai/kaneai/sessions\\d39afa09-3b25-4a07-9e6b-f81418bb2823\\runs\\0",
+      "reason": "Objective completed",
+      "failedStep": null,
+      "deltas": [
+        {
+          "key": "url_required_message",
+          "baseline": "Please enter a product link.",
+          "candidate": "Please enter a product link.",
+          "verdict": "SAME"
+        }
+      ],
+      "infraError": null
+    },
+    {
       "flow": "landing",
       "status": "passed",
       "shareUrl": null,
-      "runDir": "C:\\Users\\toufi/.testmuai/kaneai/sessions\\281d9f60-f1f4-4861-bed6-5dd1e847a421\\runs\\1",
+      "runDir": "C:\\Users\\toufi/.testmuai/kaneai/sessions\\ea644013-c8dc-4cfa-96c7-547a052be57e\\runs\\1",
       "reason": "Objective completed",
       "failedStep": null,
       "deltas": [
@@ -32,10 +85,27 @@
       "infraError": null
     },
     {
+      "flow": "api_health",
+      "status": "passed",
+      "shareUrl": null,
+      "runDir": "C:\\Users\\toufi/.testmuai/kaneai/sessions\\77d95eb5-a8ce-4dde-b03e-40367681b176\\runs\\0",
+      "reason": "Objective completed",
+      "failedStep": null,
+      "deltas": [
+        {
+          "key": "health_ok",
+          "baseline": "true",
+          "candidate": "true",
+          "verdict": "SAME"
+        }
+      ],
+      "infraError": null
+    },
+    {
       "flow": "gallery",
       "status": "passed",
       "shareUrl": null,
-      "runDir": "C:\\Users\\toufi/.testmuai/kaneai/sessions\\4d2bb4af-dc68-41bc-aa5f-5bc965b724e3\\runs\\1",
+      "runDir": "C:\\Users\\toufi/.testmuai/kaneai/sessions\\8160fdc6-f2ac-49d2-9086-1e8ce1b587ff\\runs\\1",
       "reason": "Objective completed",
       "failedStep": null,
       "deltas": [
@@ -52,37 +122,67 @@
   "unexpectedCount": 0,
   "timeline": [
     {
-      "at": "2026-11-26T12:51:47.287Z",
-      "label": "Cursor changed 0 file(s)",
+      "at": "2026-11-26T14:05:04.741Z",
+      "label": "Cursor changed 9 file(s)",
       "kind": "change"
     },
     {
-      "at": "2026-11-26T12:51:47.289Z",
-      "label": "Blast radius: 2 protected flow(s)",
+      "at": "2026-11-26T14:05:04.743Z",
+      "label": "Blast radius: 5 protected flow(s)",
       "kind": "impact"
     },
     {
-      "at": "2026-11-26T12:51:47.289Z",
+      "at": "2026-11-26T14:05:04.743Z",
+      "label": "Kane replaying generate wizard in a real browser",
+      "kind": "verify"
+    },
+    {
+      "at": "2026-11-26T14:08:48.526Z",
+      "label": "Generate wizard still behaves like the trusted build",
+      "kind": "proof"
+    },
+    {
+      "at": "2026-11-26T14:08:48.526Z",
+      "label": "Kane replaying site url validation in a real browser",
+      "kind": "verify"
+    },
+    {
+      "at": "2026-11-26T14:10:07.063Z",
+      "label": "Site URL validation still behaves like the trusted build",
+      "kind": "proof"
+    },
+    {
+      "at": "2026-11-26T14:10:07.063Z",
       "label": "Kane replaying landing and branding in a real browser",
       "kind": "verify"
     },
     {
-      "at": "2026-11-26T12:53:05.872Z",
+      "at": "2026-11-26T14:11:34.877Z",
       "label": "Landing and branding still behaves like the trusted build",
       "kind": "proof"
     },
     {
-      "at": "2026-11-26T12:53:05.872Z",
+      "at": "2026-11-26T14:11:34.877Z",
+      "label": "Kane replaying api health in a real browser",
+      "kind": "verify"
+    },
+    {
+      "at": "2026-11-26T14:13:07.027Z",
+      "label": "API health still behaves like the trusted build",
+      "kind": "proof"
+    },
+    {
+      "at": "2026-11-26T14:13:07.027Z",
       "label": "Kane replaying shorts gallery in a real browser",
       "kind": "verify"
     },
     {
-      "at": "2026-11-26T12:55:32.655Z",
+      "at": "2026-11-26T14:15:29.332Z",
       "label": "Shorts Gallery still behaves like the trusted build",
       "kind": "proof"
     },
     {
-      "at": "2026-11-26T12:55:32.655Z",
+      "at": "2026-11-26T14:15:29.332Z",
       "label": "Protected behavior verified — safe to ship",
       "kind": "proof"
     }
