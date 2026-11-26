@@ -1,0 +1,45 @@
+# Secrets and local env
+.env
+.env.*
+!.env.example
+*.pem
+*.p12
+*.key
+credentials.json
+**/secrets*
+
+# Dependencies and build output
+node_modules/
+dist/
+**/node_modules/
+**/.vite/
+apps/web/dist
+
+# Local runtime
+.DS_Store
+tmp/
+.tmp/
+jobs-local/
+.minio/
+.temporal/
+infra/temporal/temporal.exe
+*.webm
+*.mp4
+
+# Nested clones (keep docs, drop their git metadata)
+docs/kane-cli/.git/
+
+# Kane CLI local recordings and evidence (summaries live in docs/qa-proof)
+output-*/
+**/output-*/
+.testmuai/
+
+# PostReady QA live state (config, flow-map, baseline stay committed)
+.postready-qa/last-verify.json
+.postready-qa/runs/
+.postready-qa/state/
+
+# Logs (keep committed Kane run samples)
+*.log
+!docs/qa-proof/*.log
+!docs/qa-proof/**/*.log
