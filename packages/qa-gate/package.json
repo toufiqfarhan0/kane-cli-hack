@@ -1,0 +1,16 @@
+{
+  "name": "@postready/qa-gate",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./src/bin.ts",
+  "scripts": {
+    "cli": "tsx src/bin.ts",
+    "test": "node --import tsx --test src/testmd-runner.test.ts src/diff-engine.test.ts src/impact-mapper.test.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}
