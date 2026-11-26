@@ -1,0 +1,16 @@
+{
+  "name": "@postready/runner",
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/worker.ts",
+    "start": "tsx src/worker.ts"
+  },
+  "dependencies": {
+    "@postready/pipeline": "*",
+    "@postready/core": "*",
+    "@postready/orchestrator": "*",
+    "@temporalio/worker": "^1.11.7",
+    "tsx": "^4.19.2"
+  }
+}
