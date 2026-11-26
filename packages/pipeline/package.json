@@ -1,0 +1,16 @@
+{
+  "name": "@postready/pipeline",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "./src/index.ts",
+  "dependencies": {
+    "@postready/core": "*",
+    "@temporalio/activity": "^1.11.7",
+    "hyperframes": "0.9.70",
+    "playwright": "^1.50.0",
+    "undici": "^7.30.2"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2"
+  }
+}
