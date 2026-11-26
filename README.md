@@ -4,7 +4,7 @@ The product is finished — then you still have to click through it, fight modal
 
 That’s why we built **PostReady**: give a **storefront product link** or a **website / app link**, a plain-English Brief, and your on-screen capture steps — get a finished **15-second `demo.mp4`** with **SRT captions**, **AI voiceover**, sound design, and animated motion scenes. **[Kane CLI](https://www.testmuai.com/support/docs/kane-cli-introduction/)** is the hands on the live web page (and the agent that verifies PostReady itself end to end). Don’t write brittle selectors or record manual walkthroughs. Let Kane walk the live site.
 
-Run locally via [Quick start](#quick-start) or jump straight to [Judge PostReady in 60–90 seconds](#judge-postready-in-6090-seconds).
+Run locally via [Quick start](#quick-start), jump straight to [Judge PostReady in 60–90 seconds](#judge-postready-in-6090-seconds), or watch the [YouTube Demo Video](https://youtu.be/wCxfWUsdLIE) and read the [dev.to Launch Post](https://dev.to/toufiq_farhan/postready-turn-any-product-or-website-link-into-a-15s-launch-video-using-real-chromium-kane-cli-5a89).
 
 ## Table of contents
 
@@ -100,6 +100,9 @@ PostReady is built for **Lane 3 — Agents with hands on the real web**: Kane CL
 | **API Health** | `http://127.0.0.1:4031/health` |
 | **Committed TestMD Suite** | [`qa-specs/`](qa-specs/run-all.sh) (`landing_page_test.md`, `creator_wizard_test.md`, `url_validation_test.md`, `render_library_test.md`, `health_check_test.md`, `smoke_flow_test.md`) |
 | **QA Proof Reports** | [`docs/qa-proof/`](docs/qa-proof) — [`baseline.json`](docs/qa-proof/baseline.json), [`blocked-run.json`](docs/qa-proof/blocked-run.json), [`verified-run.json`](docs/qa-proof/verified-run.json) |
+| **Demo Video (YouTube)** | [youtu.be/wCxfWUsdLIE](https://youtu.be/wCxfWUsdLIE) |
+| **Launch Write-up (dev.to)** | [PostReady on dev.to](https://dev.to/toufiq_farhan/postready-turn-any-product-or-website-link-into-a-15s-launch-video-using-real-chromium-kane-cli-5a89) |
+| **X (Twitter) Posts** | [Post 1](https://x.com/velnoxvwwd/status/2126006136835084313?a=YSWEMDatNr_PE43Xkdk&s=20) · [Post 2](https://x.com/velnoxvwwd/status/2126008937174671710?a=PcJTt204sz9M4AG9SQo&s=20) |
 | **GitHub Repository** | [`toufiqfarhan0/kane-cli-hack`](https://github.com/toufiqfarhan0/kane-cli-hack) |
 
 ## Built with
