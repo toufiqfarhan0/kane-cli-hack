@@ -1,0 +1,48 @@
+services:
+  - type: web
+    name: postready-studio
+    runtime: docker
+    dockerfilePath: ./Dockerfile.render
+    plan: free # Lets Blueprint deploy cleanly without billing gate; upgrade to 'standard' (2 GB RAM) in Render UI for Chromium + HyperFrames video renders
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: TEMPORAL_ADDRESS
+        value: 127.0.0.1:7233
+      - key: TEMPORAL_NAMESPACE
+        value: default
+      - key: API_PORT
+        value: "4031"
+      - key: WORKER_PORT
+        value: "4098"
+      - key: KANE_HEADLESS
+        value: "1"
+      - key: KANE_CLI_SYSTEM_NODE
+        value: "1"
+      - key: WORKER_IDENTITY
+        value: render-1
+      - key: SUPABASE_STORAGE_BUCKET
+        value: postready
+      - key: GEMINI_TEXT_MODEL
+        value: gemini-2.0-flash
+      - key: PUBLIC_API_BASE_URL
+        sync: false
+      - key: DATABASE_URL
+        sync: false
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+      - key: KANE_USERNAME
+        sync: false
+      - key: KANE_ACCESS_KEY
+        sync: false
+      - key: KANE_PROJECT_ID
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: ELEVENLABS_API_KEY
+        sync: false
+      - key: ELEVENLABS_VOICE_ID
+        sync: false

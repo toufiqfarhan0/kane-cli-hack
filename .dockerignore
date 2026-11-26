@@ -1,0 +1,13 @@
+node_modules
+apps/web/dist
+.git
+.env
+.env.*
+.temporal
+infra/temporal
+.testmuai
+jobs-local
+tmp
+output-*
+*.mp4
+*.log

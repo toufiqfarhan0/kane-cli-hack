@@ -1,0 +1,45 @@
+# syntax=docker/dockerfile:1
+FROM mcr.microsoft.com/playwright:v1.62.1-noble
+
+WORKDIR /app
+
+# Install Nginx, FFmpeg, Temporal CLI, and Python + edge-tts
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    nginx ffmpeg unzip curl ca-certificates \
+    fonts-liberation fonts-noto-color-emoji espeak-ng python3 python3-pip \
+  && pip3 install --no-cache-dir --break-system-packages edge-tts \
+  && curl -fsSL https://github.com/temporalio/cli/releases/download/v1.10.1/temporal_cli_1.10.1_linux_amd64.tar.gz \
+     | tar -xz -C /usr/local/bin temporal \
+  && chmod +x /usr/local/bin/temporal \
+  && rm -rf /var/lib/apt/lists/* /etc/nginx/sites-enabled/default
+
+# Copy monorepo workspaces and QA assets
+COPY package.json package-lock.json ./
+COPY apps ./apps
+COPY packages ./packages
+COPY infra ./infra
+COPY qa-specs ./qa-specs
+COPY .postready-qa ./.postready-qa
+COPY docs ./docs
+
+# Install Node deps, build Vite web bundle, pre-cache browsers & Kane CLI 0.10.9
+RUN npm ci \
+  && npm run build -w @postready/web \
+  && npx playwright install --with-deps chromium \
+  && npx hyperframes browser ensure \
+  && npm i -g @testmuai/kane-cli@0.10.9 @testmuai/kane-cli-linux-x64@0.10.9 \
+  && find "$(npm root -g)/@testmuai" -type f \( \
+       -name 'kane-cli' -o -name 'v16-runner' -o -name 'assurance-agent' -o -name 'node' \
+     \) -exec chmod 755 {} \;
+
+ENV NODE_ENV=production
+ENV KANE_HEADLESS=1
+ENV KANE_CLI_SYSTEM_NODE=1
+ENV TEMPORAL_ADDRESS=127.0.0.1:7233
+ENV TEMPORAL_NAMESPACE=default
+
+COPY infra/render-entrypoint.sh /render-entrypoint.sh
+RUN sed -i 's/\r$//' /render-entrypoint.sh && chmod +x /render-entrypoint.sh
+
+EXPOSE 10000
+CMD ["/render-entrypoint.sh"]
