@@ -1,0 +1,63 @@
+{
+  "studioUrl": "http://localhost:5173",
+  "apiUrl": "http://localhost:4031/health",
+  "variablesFile": ".testmuai/variables/local.json",
+  "perTestTimeoutS": 300,
+  "hookBudgetS": 1800,
+  "maxAttempts": 3,
+  "fallbackFlow": "landing",
+  "ignore": [
+    "packages/pipeline/**",
+    "packages/orchestrator/**",
+    "packages/core/**",
+    "packages/qa-gate/**",
+    ".postready-qa/**",
+    ".testmuai/**",
+    ".postready/**",
+    "qa-specs/**",
+    "docs/**",
+    "infra/**",
+    "scripts/**",
+    "README.md",
+    ".gitignore",
+    "package-lock.json",
+    "package.json"
+  ],
+  "flows": {
+    "wizard": {
+      "test": "qa-specs/creator_wizard_test.md",
+      "label": "Generate wizard",
+      "risk": "HIGH",
+      "protect": ["launch_heading", "wizard_url"],
+      "observe": []
+    },
+    "validation": {
+      "test": "qa-specs/url_validation_test.md",
+      "label": "Site URL validation",
+      "risk": "HIGH",
+      "protect": ["url_required_message"],
+      "observe": []
+    },
+    "landing": {
+      "test": "qa-specs/landing_page_test.md",
+      "label": "Landing and branding",
+      "risk": "MED",
+      "protect": ["default_product"],
+      "observe": []
+    },
+    "gallery": {
+      "test": "qa-specs/render_library_test.md",
+      "label": "Shorts Gallery",
+      "risk": "LOW",
+      "protect": ["gallery_heading"],
+      "observe": []
+    },
+    "api_health": {
+      "test": "qa-specs/health_check_test.md",
+      "label": "API health",
+      "risk": "MED",
+      "protect": [],
+      "observe": ["health_ok"]
+    }
+  }
+}
