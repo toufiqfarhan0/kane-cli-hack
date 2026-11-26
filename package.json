@@ -1,0 +1,27 @@
+{
+  "name": "postready",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspaces --if-present",
+    "dev:infra": "echo 'Use local Postgres + temporal server start-dev (see README)'",
+    "migrate": "npm run migrate -w @postready/core",
+    "dev:server": "npm run dev -w @postready/server",
+    "dev:runner": "npm run dev -w @postready/runner",
+    "dev:web": "npm run dev -w @postready/web",
+    "test:qa-specs": "bash qa-specs/run-all.sh",
+    "test:qa-gate": "npm test -w @postready/qa-gate",
+    "verify": "npm run cli -w @postready/qa-gate -- verify",
+    "verify:baseline": "npm run cli -w @postready/qa-gate -- baseline",
+    "verify:status": "npm run cli -w @postready/qa-gate -- status",
+    "verify:plant": "node packages/qa-gate/scripts/break-continue.mjs",
+    "verify:restore": "node packages/qa-gate/scripts/revert-continue.mjs",
+    "build": "npm run build --workspaces --if-present"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
