@@ -1,0 +1,90 @@
+{
+  "startedAt": "2026-11-26T12:51:47.209Z",
+  "finishedAt": "2026-11-26T12:55:32.656Z",
+  "verdict": "passed",
+  "changeRequest": "the requested change",
+  "agent": "Cursor",
+  "attempt": 1,
+  "maxAttempts": 3,
+  "changedFiles": [],
+  "affectedFlows": [
+    "landing",
+    "gallery"
+  ],
+  "unmappedFiles": [],
+  "skippedFlows": [],
+  "flows": [
+    {
+      "flow": "landing",
+      "status": "passed",
+      "shareUrl": null,
+      "runDir": "C:\\Users\\toufi/.testmuai/kaneai/sessions\\281d9f60-f1f4-4861-bed6-5dd1e847a421\\runs\\1",
+      "reason": "Objective completed",
+      "failedStep": null,
+      "deltas": [
+        {
+          "key": "default_product",
+          "baseline": "OLIPOP Vintage Cola",
+          "candidate": "OLIPOP Vintage Cola",
+          "verdict": "SAME"
+        }
+      ],
+      "infraError": null
+    },
+    {
+      "flow": "gallery",
+      "status": "passed",
+      "shareUrl": null,
+      "runDir": "C:\\Users\\toufi/.testmuai/kaneai/sessions\\4d2bb4af-dc68-41bc-aa5f-5bc965b724e3\\runs\\1",
+      "reason": "Objective completed",
+      "failedStep": null,
+      "deltas": [
+        {
+          "key": "gallery_heading",
+          "baseline": "Render Library",
+          "candidate": "Render Library",
+          "verdict": "SAME"
+        }
+      ],
+      "infraError": null
+    }
+  ],
+  "unexpectedCount": 0,
+  "timeline": [
+    {
+      "at": "2026-11-26T12:51:47.287Z",
+      "label": "Cursor changed 0 file(s)",
+      "kind": "change"
+    },
+    {
+      "at": "2026-11-26T12:51:47.289Z",
+      "label": "Blast radius: 2 protected flow(s)",
+      "kind": "impact"
+    },
+    {
+      "at": "2026-11-26T12:51:47.289Z",
+      "label": "Kane replaying landing and branding in a real browser",
+      "kind": "verify"
+    },
+    {
+      "at": "2026-11-26T12:53:05.872Z",
+      "label": "Landing and branding still behaves like the trusted build",
+      "kind": "proof"
+    },
+    {
+      "at": "2026-11-26T12:53:05.872Z",
+      "label": "Kane replaying shorts gallery in a real browser",
+      "kind": "verify"
+    },
+    {
+      "at": "2026-11-26T12:55:32.655Z",
+      "label": "Shorts Gallery still behaves like the trusted build",
+      "kind": "proof"
+    },
+    {
+      "at": "2026-11-26T12:55:32.655Z",
+      "label": "Protected behavior verified — safe to ship",
+      "kind": "proof"
+    }
+  ]
+}
