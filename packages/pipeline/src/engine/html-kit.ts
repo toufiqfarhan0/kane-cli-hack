@@ -56,6 +56,42 @@ export const THEME: Record<"pop" | "noir" | "editorial" | "neon", ThemeSpec> = {
   },
 };
 
+export const THEME_PALETTE: Record<"pop" | "noir" | "editorial" | "neon", { bg: string; accent: string }> = {
+  pop: { bg: "#fff5ea", accent: "#ff4d2e" },
+  noir: { bg: "#0b0b0f", accent: "#e4e4e7" },
+  editorial: { bg: "#f5efe6", accent: "#9a3412" },
+  neon: { bg: "#050816", accent: "#00ff9d" },
+};
+
+const isHex6 = (v: unknown): v is string => /^#[0-9a-f]{6}$/i.test(String(v ?? ""));
+
+export function resolvePaletteForTheme(
+  theme: "pop" | "noir" | "editorial" | "neon",
+  rawPalette?: { bg?: unknown; accent?: unknown } | null,
+  themeOverride?: "auto" | "pop" | "noir" | "editorial" | "neon",
+): { bg: string; accent: string } {
+  const def = THEME_PALETTE[theme];
+  let bg = isHex6(rawPalette?.bg) ? String(rawPalette!.bg).toLowerCase() : def.bg;
+  let accent = isHex6(rawPalette?.accent) ? String(rawPalette!.accent).toLowerCase() : def.accent;
+
+  if (themeOverride && themeOverride !== "auto") {
+    const bgLum = lum(bg);
+    if (theme === "editorial" && bgLum < 0.45) bg = def.bg;
+    if (theme === "pop" && bgLum < 0.28) bg = def.bg;
+    if ((theme === "noir" || theme === "neon") && bgLum > 0.25) bg = def.bg;
+    if (theme === "neon" && (contrast(bg, accent) < 3 || accent === "#e4e4e7")) {
+      accent = def.accent;
+    }
+  }
+  if (contrast(bg, accent) < 1.8) {
+    accent = def.accent;
+    if (contrast(bg, accent) < 1.8) {
+      accent = lum(bg) > 0.42 ? "#111114" : "#ffd23f";
+    }
+  }
+  return { bg, accent };
+}
+
 export const esc = (s: unknown): string =>
   String(s ?? "")
     .replace(/&/g, "&amp;")

@@ -126,6 +126,7 @@ export async function KaneDemoWorkflow(args: {
               jobId: args.jobId,
               mode: "kane",
               input: args.input,
+              cdpPort: slot.port,
             })
           : await kaneA.kaneInspectProduct({
               jobId: args.jobId,

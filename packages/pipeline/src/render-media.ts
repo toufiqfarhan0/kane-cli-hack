@@ -681,6 +681,66 @@ const ASPECT_DIMS: Record<AspectRatio, [number, number]> = {
   "16:9": [1920, 1080],
 };
 
+async function buildWalkthroughClip(dir: string, outMp4: string, targetSeconds = 5.4): Promise<boolean> {
+  const live = readLiveIndex(dir).filter((rec) => {
+    try {
+      return statSync(rec.file).size >= 16_000;
+    } catch {
+      return false;
+    }
+  });
+  if (live.length < 4) return false;
+  // Skip earliest loading frame when plenty of captured walkthrough frames exist
+  const trimmed = live.length >= 10 ? live.slice(2) : live;
+  const maxFrames = 64;
+  const sampled: LiveRec[] = [];
+  if (trimmed.length <= maxFrames) {
+    sampled.push(...trimmed);
+  } else {
+    for (let k = 0; k < maxFrames; k++) {
+      sampled.push(trimmed[Math.round((k * (trimmed.length - 1)) / (maxFrames - 1))]!);
+    }
+  }
+  const perFrame = Math.max(0.06, targetSeconds / Math.max(1, sampled.length));
+  const files = sampled.map((s) => s.file);
+  const steps = files.map(() => perFrame);
+  const list = outMp4.replace(/\.mp4$/, ".txt");
+  const lines: string[] = [];
+  for (let i = 0; i < files.length; i++) {
+    const escaped = files[i]!.replace(/'/g, `'\\''`);
+    lines.push(`file '${escaped}'`);
+    lines.push(`duration ${steps[i]!.toFixed(3)}`);
+  }
+  lines.push(`file '${files[files.length - 1]!.replace(/'/g, `'\\''`)}'`);
+  writeFileSync(list, `${lines.join("\n")}\n`);
+  try {
+    await ff("ffmpeg", [
+      "-y",
+      "-f",
+      "concat",
+      "-safe",
+      "0",
+      "-i",
+      list,
+      "-vf",
+      "scale=1280:800:force_original_aspect_ratio=increase,crop=1280:800,setsar=1,fps=30,format=yuv420p",
+      "-t",
+      targetSeconds.toFixed(3),
+      "-an",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "veryfast",
+      "-crf",
+      "20",
+      outMp4,
+    ]);
+    return existsSync(outMp4) && statSync(outMp4).size > 10_000;
+  } catch {
+    return false;
+  }
+}
+
 export async function renderProductShort(args: {
   jobId: string;
   mode: "kane" | "naive";
@@ -717,8 +777,8 @@ export async function renderProductShort(args: {
   const aspect =
     args.input.aspect_ratio ??
     (args.input.job_type === "website_short" ? "16:9" : "9:16");
-  const isWebsiteLaunch =
-    args.input.job_type === "website_short" && aspect === "16:9";
+  const isWebsiteLaunch = args.input.job_type === "website_short";
+  const [tw, th] = ASPECT_DIMS[aspect] ?? (isWebsiteLaunch ? [1920, 1080] : [1080, 1920]);
   const isDirector = args.style === "director" && Boolean(args.storyboard);
   const theme = isDirector
     ? args.storyboard!.theme
@@ -730,6 +790,14 @@ export async function renderProductShort(args: {
       : SOUND_CUES[
           args.style === "reel" || args.style === "classic" ? args.style : "depth"
         ];
+
+  let walkthroughVideoRel: string | undefined;
+  if (isWebsiteLaunch) {
+    const wtDest = join(renderDir, "assets", "walkthrough.mp4");
+    if (await buildWalkthroughClip(dir, wtDest, 5.5)) {
+      walkthroughVideoRel = "./assets/walkthrough.mp4";
+    }
+  }
 
   const bgmWav = join(dir, "bgm.wav");
   writeFileSync(bgmWav, soundtrack({ theme, duration: DURATION, ...cues }));
@@ -815,7 +883,12 @@ export async function renderProductShort(args: {
   });
 
   await updateJob(db, args.jobId, { step: "render" });
-  await emitEvent(args.jobId, "phase", { phase: "render", style: args.style, theme });
+  await emitEvent(args.jobId, "phase", {
+    phase: "render",
+    style: args.style,
+    theme,
+    walkthroughRecorded: Boolean(walkthroughVideoRel),
+  });
 
   const html = isWebsiteLaunch
     ? composeWebsiteLaunch(args.product, relImages, {
@@ -823,6 +896,9 @@ export async function renderProductShort(args: {
         brief: args.brief,
         storyboard: args.storyboard,
         audio: audioAssetRel,
+        width: tw,
+        height: th,
+        walkthroughVideo: walkthroughVideoRel,
       })
     : isDirector
       ? composeDirected(args.product, args.storyboard!, relImages, {
@@ -844,7 +920,7 @@ export async function renderProductShort(args: {
 
   const rawRenderedMp4 = join(
     outDir,
-    isWebsiteLaunch ? "short-16x9.mp4" : "short-9x16.mp4",
+    isWebsiteLaunch ? `launch-${tw}x${th}.mp4` : "short-9x16.mp4",
   );
   const outMp4 = join(outDir, "demo.mp4");
   const launch = resolveHyperframesLaunch(
@@ -860,7 +936,7 @@ export async function renderProductShort(args: {
       env: { ...process.env, HYPERFRAMES_RENDER_LOCK: "off" },
     });
 
-    const nativeMatchesAspect = isWebsiteLaunch ? aspect === "16:9" : aspect === "9:16";
+    const nativeMatchesAspect = isWebsiteLaunch ? true : aspect === "9:16";
     if (nativeMatchesAspect) {
       await ff("ffmpeg", [
         "-y",

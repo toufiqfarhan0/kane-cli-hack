@@ -19,6 +19,7 @@ import {
   SYSTEM as BRIEF_SYSTEM,
   untrusted,
 } from "./engine/brief-schema.js";
+import { THEME_PALETTE } from "./engine/html-kit.js";
 import {
   normalizeStoryboard,
   SYSTEM_DIRECTOR,
@@ -405,10 +406,12 @@ function fallbackBrief(
       line: (product.description || product.title).split(/\s+/).slice(0, 9).join(" "),
     });
   }
+  const picked = themeOverride && themeOverride !== "auto" ? themeOverride : "noir";
+  const defPal = THEME_PALETTE[picked];
   return normalizeBrief(
     {
-      theme: themeOverride && themeOverride !== "auto" ? themeOverride : "noir",
-      palette: { bg: "#0b0b0f", accent: isWebsite ? "#38bdf8" : "#ff4d2e" },
+      theme: picked,
+      palette: { bg: defPal.bg, accent: isWebsite && picked === "noir" ? "#38bdf8" : defPal.accent },
       hook: isWebsite ? "See it work live" : "Wait until you see this",
       name: product.title,
       tagline: product.bullets[0] || product.description || product.title,
@@ -430,12 +433,14 @@ function fallbackStoryboard(
   const bullets = product.bullets.length
     ? product.bullets.slice(0, 3)
     : [product.description.split(/[.!?]/)[0] || product.title, `By ${product.brand}`];
+  const picked = themeOverride && themeOverride !== "auto" ? themeOverride : "noir";
+  const defPal = THEME_PALETTE[picked];
   return normalizeStoryboard(
     {
       concept: `${product.brand} — ${product.title}`,
       name: product.title,
-      theme: themeOverride && themeOverride !== "auto" ? themeOverride : "noir",
-      palette: { bg: "#0b0b0f", accent: isWebsite ? "#38bdf8" : "#ff4d2e" },
+      theme: picked,
+      palette: { bg: defPal.bg, accent: isWebsite && picked === "noir" ? "#38bdf8" : defPal.accent },
       motif: "sparks",
       scenes: [
         {

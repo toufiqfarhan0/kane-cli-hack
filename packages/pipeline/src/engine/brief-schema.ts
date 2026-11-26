@@ -1,4 +1,5 @@
 import type { NormalizedProduct, PostReadyBrief } from "@postready/core";
+import { resolvePaletteForTheme } from "./html-kit.js";
 
 export const THEMES = ["pop", "noir", "editorial", "neon"] as const;
 
@@ -79,13 +80,14 @@ export function normalizeBrief(
   while (fi.length < 3) fi.push((hero + fi.length + 1) % n);
 
   const pal = (raw.palette ?? {}) as { bg?: unknown; accent?: unknown };
+  const palette = resolvePaletteForTheme(pickedTheme, pal, themeOverride);
   const vo = Array.isArray(raw.voiceover)
     ? raw.voiceover.map((v) => words(v, 14)).filter(Boolean).slice(0, 4)
     : [];
 
   return {
     theme: pickedTheme,
-    palette: { bg: hex(pal.bg, "#0b0b0f"), accent: hex(pal.accent, "#ff4d2e") },
+    palette,
     hook: words(raw.hook || product.title, 6).replace(/[.]+$/, ""),
     name: words(raw.name || product.title, 5),
     tagline: words(raw.tagline || product.description || product.title, 9),

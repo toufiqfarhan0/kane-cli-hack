@@ -1276,6 +1276,7 @@ export async function kaneCaptureWebsite(args: {
   jobId: string;
   mode: "kane" | "naive";
   input: JobInput;
+  cdpPort?: number;
 }): Promise<{
   product: NormalizedProduct;
   screenshotPath?: string;
@@ -1305,31 +1306,46 @@ Store up to 4 main product UI or hero visual image URLs separated by ' | ' as 'p
 Store any visible blocking gate as 'blocker' (one of: none, captcha, bot_challenge, login_wall, mfa, paywall).
 Assert the page headline or core product content is visible unless blocked.`;
 
-  const argv = [
-    "run",
-    objective,
-    "--agent",
-    "--mode",
-    "action",
-    "--url",
-    args.input.website_url,
-    "--timeout",
-    "180",
-    "--max-steps",
-    "22",
-    ...extraKaneFlags(),
-  ];
   await emitEvent(args.jobId, "kane_cmd", {
     phase: "understand",
     action: rawActions[0]
-      ? `Capture live screens · ${rawActions[0]}`
-      : `Capture website screens ${args.input.website_url}`,
+      ? `Capture live walkthrough · ${rawActions[0]}`
+      : `Capture website walkthrough ${args.input.website_url}`,
   });
-  const result = await spawnKane(argv, {
-    timeoutMs: 240_000,
-    cwd: dir,
-    onEvent: kaneEventHandler(args.jobId, "understand"),
-  });
+
+  const runCapture = async () => {
+    const argv = [
+      "run",
+      objective,
+      "--agent",
+      "--mode",
+      "action",
+      "--url",
+      args.input.website_url,
+      "--timeout",
+      "180",
+      "--max-steps",
+      "22",
+      ...extraKaneFlags(),
+    ];
+    return await spawnKane(argv, {
+      timeoutMs: 240_000,
+      cwd: dir,
+      onEvent: kaneEventHandler(args.jobId, "understand"),
+    });
+  };
+
+  let result;
+  if (args.cdpPort && !cfg.kaneWsEndpoint) {
+    const rec = await runWithRecordedChrome({
+      jobId: args.jobId,
+      port: args.cdpPort,
+      fn: runCapture,
+    });
+    result = rec.result;
+  } else {
+    result = await runCapture();
+  }
   await emitEvent(args.jobId, "ndjson", {
     phase: "understand",
     runEnd: result.runEnd,

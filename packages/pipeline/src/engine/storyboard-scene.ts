@@ -13,6 +13,7 @@ import {
   inkOn,
   longestWord,
   lum,
+  resolvePaletteForTheme,
   rng,
 } from "./html-kit.js";
 
@@ -84,9 +85,7 @@ export function normalizeStoryboard(
       ? themeOverride
       : oneOf(sb.theme, THEMES, "noir");
   const pal = (sb.palette ?? {}) as { bg?: unknown; accent?: unknown };
-  let bg = hexOr(pal.bg, "#0b0b0f");
-  let accent = hexOr(pal.accent, "#ff4d2e");
-  if (contrast(bg, accent) < 1.6) accent = lum(bg) > 0.4 ? "#111114" : "#ffd23f";
+  const { bg, accent } = resolvePaletteForTheme(theme, pal, themeOverride);
 
   const clean = (rawScene: unknown): SceneRec | null => {
     const s = (rawScene ?? {}) as Record<string, unknown>;
