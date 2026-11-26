@@ -162,7 +162,13 @@ export default function Gallery() {
                   <div className="clapper-stripe clapper-stripe--tile" aria-hidden />
                   <div className="filmstrip-frame">
                     <span className={`ratio-sticker ${ratio === "16:9" ? "ratio-sticker--wide" : ""}`}>
-                      {ratio === "16:9" ? "16:9 WIDE" : `${ratio} VERTICAL`}
+                      {ratio === "16:9"
+                        ? "16:9 WIDE"
+                        : ratio === "1:1"
+                          ? "1:1 SQUARE"
+                          : ratio === "4:5"
+                            ? "4:5 FEED"
+                            : `${ratio} VERTICAL`}
                     </span>
 
                     {j.status === "completed" ? (

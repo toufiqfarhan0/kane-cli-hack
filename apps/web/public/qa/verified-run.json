@@ -1,21 +1,13 @@
 {
-  "startedAt": "2026-11-26T14:05:04.512Z",
-  "finishedAt": "2026-11-26T14:15:29.332Z",
+  "startedAt": "2026-11-26T16:09:15.660Z",
+  "finishedAt": "2026-11-26T16:19:36.985Z",
   "verdict": "passed",
   "changeRequest": "the requested change",
   "agent": "Cursor",
   "attempt": 1,
   "maxAttempts": 3,
   "changedFiles": [
-    "apps/web/public/qa/verified-run.json",
-    "apps/web/src/Router.tsx",
-    "apps/web/src/theme.css",
-    "apps/web/src/views/ProductDeck.tsx",
-    "apps/web/src/views/ProductionInspector.tsx",
-    "apps/web/src/views/QaGuardrails.tsx",
-    "apps/web/src/views/RenderLibrary.tsx",
-    "apps/web/src/views/ShortStudio.tsx",
-    "apps/web/src/widgets/StageChecklist.tsx"
+    "apps/web/src/views/RenderLibrary.tsx"
   ],
   "affectedFlows": [
     "wizard",
@@ -31,7 +23,7 @@
       "flow": "wizard",
       "status": "passed",
       "shareUrl": null,
-      "runDir": "C:\\Users\\toufi/.testmuai/kaneai/sessions\\e5f406a3-4b03-4456-bb27-54fd016d3e50\\runs\\3",
+      "runDir": "C:\\Users\\toufi/.testmuai/kaneai/sessions\\5d26c5f1-8eca-477b-abe9-dbb26920e97c\\runs\\3",
       "reason": "Objective completed",
       "failedStep": null,
       "deltas": [
@@ -54,7 +46,7 @@
       "flow": "validation",
       "status": "passed",
       "shareUrl": null,
-      "runDir": "C:\\Users\\toufi/.testmuai/kaneai/sessions\\d39afa09-3b25-4a07-9e6b-f81418bb2823\\runs\\0",
+      "runDir": "C:\\Users\\toufi/.testmuai/kaneai/sessions\\4a85b445-95f1-4401-b268-d6a6b4d2cb69\\runs\\0",
       "reason": "Objective completed",
       "failedStep": null,
       "deltas": [
@@ -71,7 +63,7 @@
       "flow": "landing",
       "status": "passed",
       "shareUrl": null,
-      "runDir": "C:\\Users\\toufi/.testmuai/kaneai/sessions\\ea644013-c8dc-4cfa-96c7-547a052be57e\\runs\\1",
+      "runDir": "C:\\Users\\toufi/.testmuai/kaneai/sessions\\ca68d8a2-bab3-42aa-b83a-6ece92a96f33\\runs\\1",
       "reason": "Objective completed",
       "failedStep": null,
       "deltas": [
@@ -88,7 +80,7 @@
       "flow": "api_health",
       "status": "passed",
       "shareUrl": null,
-      "runDir": "C:\\Users\\toufi/.testmuai/kaneai/sessions\\77d95eb5-a8ce-4dde-b03e-40367681b176\\runs\\0",
+      "runDir": "C:\\Users\\toufi/.testmuai/kaneai/sessions\\9112e9df-abcf-45c3-a5d8-d0a19eb1ea9a\\runs\\0",
       "reason": "Objective completed",
       "failedStep": null,
       "deltas": [
@@ -105,7 +97,7 @@
       "flow": "gallery",
       "status": "passed",
       "shareUrl": null,
-      "runDir": "C:\\Users\\toufi/.testmuai/kaneai/sessions\\8160fdc6-f2ac-49d2-9086-1e8ce1b587ff\\runs\\1",
+      "runDir": "C:\\Users\\toufi/.testmuai/kaneai/sessions\\7b6e0d35-0084-42fc-b14c-552238956a92\\runs\\1",
       "reason": "Objective completed",
       "failedStep": null,
       "deltas": [
@@ -122,67 +114,67 @@
   "unexpectedCount": 0,
   "timeline": [
     {
-      "at": "2026-11-26T14:05:04.741Z",
-      "label": "Cursor changed 9 file(s)",
+      "at": "2026-11-26T16:09:15.890Z",
+      "label": "Cursor changed 1 file(s)",
       "kind": "change"
     },
     {
-      "at": "2026-11-26T14:05:04.743Z",
+      "at": "2026-11-26T16:09:15.891Z",
       "label": "Blast radius: 5 protected flow(s)",
       "kind": "impact"
     },
     {
-      "at": "2026-11-26T14:05:04.743Z",
+      "at": "2026-11-26T16:09:15.891Z",
       "label": "Kane replaying generate wizard in a real browser",
       "kind": "verify"
     },
     {
-      "at": "2026-11-26T14:08:48.526Z",
+      "at": "2026-11-26T16:12:49.044Z",
       "label": "Generate wizard still behaves like the trusted build",
       "kind": "proof"
     },
     {
-      "at": "2026-11-26T14:08:48.526Z",
+      "at": "2026-11-26T16:12:49.044Z",
       "label": "Kane replaying site url validation in a real browser",
       "kind": "verify"
     },
     {
-      "at": "2026-11-26T14:10:07.063Z",
+      "at": "2026-11-26T16:13:53.008Z",
       "label": "Site URL validation still behaves like the trusted build",
       "kind": "proof"
     },
     {
-      "at": "2026-11-26T14:10:07.063Z",
+      "at": "2026-11-26T16:13:53.009Z",
       "label": "Kane replaying landing and branding in a real browser",
       "kind": "verify"
     },
     {
-      "at": "2026-11-26T14:11:34.877Z",
+      "at": "2026-11-26T16:15:33.700Z",
       "label": "Landing and branding still behaves like the trusted build",
       "kind": "proof"
     },
     {
-      "at": "2026-11-26T14:11:34.877Z",
+      "at": "2026-11-26T16:15:33.701Z",
       "label": "Kane replaying api health in a real browser",
       "kind": "verify"
     },
     {
-      "at": "2026-11-26T14:13:07.027Z",
+      "at": "2026-11-26T16:17:13.304Z",
       "label": "API health still behaves like the trusted build",
       "kind": "proof"
     },
     {
-      "at": "2026-11-26T14:13:07.027Z",
+      "at": "2026-11-26T16:17:13.304Z",
       "label": "Kane replaying shorts gallery in a real browser",
       "kind": "verify"
     },
     {
-      "at": "2026-11-26T14:15:29.332Z",
+      "at": "2026-11-26T16:19:36.984Z",
       "label": "Shorts Gallery still behaves like the trusted build",
       "kind": "proof"
     },
     {
-      "at": "2026-11-26T14:15:29.332Z",
+      "at": "2026-11-26T16:19:36.985Z",
       "label": "Protected behavior verified — safe to ship",
       "kind": "proof"
     }
