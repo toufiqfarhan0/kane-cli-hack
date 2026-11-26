@@ -175,94 +175,106 @@ export default function Verified() {
 
   return (
     <div className="page-verified">
-      <section className="verified-hero">
-        <div>
-          <p className="mono-kicker">
-            <span className="coral-sq" aria-hidden />
-            QA Guardrails / qa-gate
-          </p>
-          <h1 className="verified-title">
-            Kane verified<span>.</span>
-          </h1>
-          <p className="verified-lead">
-            Diff-to-TestMD regression verification. <code>qa-gate</code> runs real Chromium checks via Kane CLI before any release or deploy ships.
-          </p>
-        </div>
-        <div className="terminal-chip">
-          <Terminal className="h-4" style={{ color: "#7ffb9f" }} />
-          <span>npm run verify -- --all</span>
+      <section className="cobalt-hero-band">
+        <div className="hero-band-inner">
+          <div className="verified-hero">
+            <div>
+              <span className="sticker-pill sticker-pill--lime">
+                <span className="status-led" aria-hidden />
+                QA Guardrails / qa-gate
+              </span>
+              <h1 className="verified-title verified-title--white">
+                Kane verified<span>.</span>
+              </h1>
+              <p className="hero-sub-white">
+                Diff-to-TestMD regression verification. <code>qa-gate</code> runs real Chromium checks via Kane CLI before any release or deploy ships.
+              </p>
+            </div>
+            <div className="terminal-chip">
+              <Terminal className="h-4" style={{ color: "var(--lime)" }} />
+              <span>npm run verify -- --all</span>
+            </div>
+          </div>
         </div>
       </section>
+      <div className="clapper-stripe" aria-hidden />
 
-      {err ? <p className="error-banner">{err}</p> : null}
-      {!data && !err ? <p className="verified-lead">Loading the last Kane report…</p> : null}
+      <div className="page-inner">
+        {err ? <p className="error-banner">{err}</p> : null}
+        {!data && !err ? <p className="verified-lead">Loading the last Kane report…</p> : null}
 
-      {featured ? (
-        <div className="verdict-banner">
-          <div className="verdict-banner-left">
-            <span className={`stamp-badge ${featured.verdict}`}>{verdictLabel(featured.verdict)}</span>
-            <div>
-              <strong style={{ fontFamily: "var(--font-display)", fontSize: "17px", display: "block" }}>
-                {featured.flows.length} flows checked · {featured.unexpectedCount} unexpected deltas
-              </strong>
-              <span className="field-hint">
-                {featured.changeRequest}
+        {featured ? (
+          <div className="verdict-banner">
+            <div className="clapper-stripe clapper-stripe--tile" aria-hidden />
+            <div className="verdict-banner-body">
+              <div className="verdict-banner-left">
+                <span className={`stamp-badge ${featured.verdict}`}>{verdictLabel(featured.verdict)}</span>
+                <div>
+                  <strong style={{ fontFamily: "var(--font-display)", fontSize: "18px", display: "block" }}>
+                    {featured.flows.length} flows checked · {featured.unexpectedCount} unexpected deltas
+                  </strong>
+                  <span className="field-hint">{featured.changeRequest}</span>
+                </div>
+              </div>
+              <span className="mono-kicker">
+                {data?.source === "live" ? "Live last-verify.json" : "Verified snapshot"}
+                {data?.baseline?.commit ? ` · baseline ${data.baseline.commit}` : ""}
               </span>
             </div>
           </div>
-          <span className="mono-kicker">
-            {data?.source === "live" ? "Live last-verify.json" : "Verified snapshot"}
-            {data?.baseline?.commit ? ` · baseline ${data.baseline.commit}` : ""}
-          </span>
-        </div>
-      ) : data && !err ? (
-        <div className="verdict-banner">
-          <div className="verdict-banner-left">
-            <span className="stamp-badge">AWAITING RUN</span>
-            <div>
-              <strong style={{ fontFamily: "var(--font-display)", fontSize: "17px", display: "block" }}>
-                No verification run captured yet
-              </strong>
-              <span className="field-hint">Run npm run verify -- --all to check all PostReady flows in Chromium.</span>
+        ) : data && !err ? (
+          <div className="verdict-banner">
+            <div className="verdict-banner-body">
+              <div className="verdict-banner-left">
+                <span className="stamp-badge">AWAITING RUN</span>
+                <div>
+                  <strong style={{ fontFamily: "var(--font-display)", fontSize: "18px", display: "block" }}>
+                    No verification run captured yet
+                  </strong>
+                  <span className="field-hint">Run npm run verify -- --all to check all PostReady flows in Chromium.</span>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      ) : null}
+        ) : null}
 
-      <div className="verified-grid">
-        {data?.live ? <ReportCard title="Live verification run" report={data.live} /> : null}
-        {data?.blocked ? <ReportCard title="Kane blocked regression" report={data.blocked} /> : null}
-        {data?.verified ? <ReportCard title="Kane verified green" report={data.verified} /> : null}
+        <div className="verified-grid">
+          {data?.live ? <ReportCard title="Live verification run" report={data.live} /> : null}
+          {data?.blocked ? <ReportCard title="Kane blocked regression" report={data.blocked} /> : null}
+          {data?.verified ? <ReportCard title="Kane verified green" report={data.verified} /> : null}
+        </div>
+
+        <section style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <h2 style={{ fontSize: "22px" }}>How the verification loop works</h2>
+            <span className="sticker-pill sticker-pill--lime" style={{ transform: "none" }}>
+              4-STEP PIPELINE
+            </span>
+          </div>
+          <div className="loop-grid">
+            <article className="loop-step-card">
+              <span className="mono-kicker">01</span>
+              <strong>Diff-to-TestMD</strong>
+              <p>Maps UI code edits to affected routes and selects committed TestMD assertions.</p>
+            </article>
+            <article className="loop-step-card">
+              <span className="mono-kicker">02</span>
+              <strong>Headless Chromium</strong>
+              <p>Kane CLI exercises real clicks, form steps, validation errors, and gallery tiles.</p>
+            </article>
+            <article className="loop-step-card">
+              <span className="mono-kicker">03</span>
+              <strong>Observable Compare</strong>
+              <p>Checks extracted page state and console/API health against the verified baseline.</p>
+            </article>
+            <article className="loop-step-card loop-step-card--highlight">
+              <span className="mono-kicker">04</span>
+              <strong>Stamp Verdict</strong>
+              <p>Marks the build SAFE TO SHIP or locks release with BLOCKED when an assertion shifts.</p>
+            </article>
+          </div>
+        </section>
       </div>
-
-      <section style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <h2 style={{ fontSize: "22px" }}>How the verification loop works</h2>
-          <span className="mono-kicker">4-step pipeline</span>
-        </div>
-        <div className="loop-grid">
-          <article className="loop-step-card">
-            <span className="mono-kicker" style={{ color: "var(--coral)" }}>01</span>
-            <strong>Diff-to-TestMD</strong>
-            <p>Maps UI code edits to affected routes and selects committed TestMD assertions.</p>
-          </article>
-          <article className="loop-step-card">
-            <span className="mono-kicker" style={{ color: "var(--coral)" }}>02</span>
-            <strong>Headless Chromium</strong>
-            <p>Kane CLI exercises real clicks, form steps, validation errors, and gallery tiles.</p>
-          </article>
-          <article className="loop-step-card">
-            <span className="mono-kicker" style={{ color: "var(--coral)" }}>03</span>
-            <strong>Observable Compare</strong>
-            <p>Checks extracted page state and console/API health against the verified baseline.</p>
-          </article>
-          <article className="loop-step-card">
-            <span className="mono-kicker" style={{ color: "var(--coral)" }}>04</span>
-            <strong>Stamp Verdict</strong>
-            <p>Marks the build SAFE TO SHIP or locks release with BLOCKED when an assertion shifts.</p>
-          </article>
-        </div>
-      </section>
     </div>
   );
 }

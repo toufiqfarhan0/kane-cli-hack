@@ -34,19 +34,19 @@ function Header() {
         </NavLink>
         <nav className="center-nav" aria-label="Primary">
           <NavLink to="/" end className={({ isActive }) => `btn-nav ${isActive ? "on" : ""}`}>
-            <Sparkles className="h-4" strokeWidth={1.6} />
+            <Sparkles className="h-4" strokeWidth={2} />
             Short Studio
           </NavLink>
           <NavLink to="/jobs" className={({ isActive }) => `btn-nav ${isActive ? "on" : ""}`}>
-            <Clapperboard className="h-4" strokeWidth={1.6} />
+            <Clapperboard className="h-4" strokeWidth={2} />
             Render Library
           </NavLink>
           <NavLink to="/verified" className={({ isActive }) => `btn-nav ${isActive ? "on" : ""}`}>
-            <BadgeCheck className="h-4" strokeWidth={1.6} />
+            <BadgeCheck className="h-4" strokeWidth={2} />
             QA Guardrails
           </NavLink>
           <NavLink to="/pitch" className={({ isActive }) => `btn-nav ${isActive ? "on" : ""}`}>
-            <Presentation className="h-4" strokeWidth={1.6} />
+            <Presentation className="h-4" strokeWidth={2} />
             Product Deck
           </NavLink>
         </nav>
@@ -64,10 +64,6 @@ export default function App() {
     <div className="app-shell">
       <Header />
       <main className="workspace">
-        <span className="crop-mark crop-mark--tl" aria-hidden />
-        <span className="crop-mark crop-mark--tr" aria-hidden />
-        <span className="crop-mark crop-mark--bl" aria-hidden />
-        <span className="crop-mark crop-mark--br" aria-hidden />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/pitch" element={<Pitch />} />
@@ -78,8 +74,21 @@ export default function App() {
       </main>
       <footer className="sheet-footer">
         <div className="sheet-footer-inner">
-          <span>POSTREADY AI STUDIO</span>
-          <span>POWERED BY TESTMU AI · KANE CLI</span>
+          <div className="footer-left">
+            <span className="footer-sq" aria-hidden />
+            <span>POSTREADY AI STUDIO</span>
+          </div>
+          <div className="footer-logos-pill">
+            <span className="footer-powered-label">POWERED BY</span>
+            <img className="powered-testmu" src="/testmu-logo.svg" alt="TestMu AI" />
+            <span className="powered-sep" aria-hidden>
+              ·
+            </span>
+            <span className="powered-kane">
+              <img src="/kane-cli.svg" alt="" />
+              Kane CLI
+            </span>
+          </div>
         </div>
       </footer>
     </div>

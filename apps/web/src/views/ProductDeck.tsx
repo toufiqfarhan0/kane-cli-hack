@@ -61,39 +61,41 @@ export default function Pitch() {
   }, [go, i]);
 
   return (
-    <div className="page-pitch">
-      <div className="pitch-topbar">
-        <div style={{ display: "flex", alignItems: "center", gap: "0.65rem" }}>
-          <span
-            className="mono-kicker"
-            style={{ background: "var(--bg-container)", padding: "0.28rem 0.65rem", borderRadius: "999px" }}
-          >
-            Product Deck
-          </span>
-          <span className="mono-kicker" style={{ color: "var(--muted)" }}>
-            /pitch
-          </span>
+    <section className="cobalt-hero-band cobalt-deck-band">
+      <div className="page-pitch hero-band-inner">
+        <div className="pitch-topbar">
+          <div style={{ display: "flex", alignItems: "center", gap: "0.65rem" }}>
+            <span className="sticker-pill sticker-pill--lime" style={{ transform: "none" }}>
+              Product Deck
+            </span>
+            <span className="mono-kicker" style={{ color: "rgba(255,255,255,0.8)" }}>
+              /pitch
+            </span>
+          </div>
+          <div style={{ display: "flex", alignItems: "center", gap: "0.85rem" }}>
+            <span className="mono-kicker" style={{ color: "rgba(255,255,255,0.85)" }}>
+              KEYS: [ PREV ] / [ NEXT ]
+            </span>
+            <span className="pitch-counter-pill">
+              {String(i + 1).padStart(2, "0")} / {String(slides).padStart(2, "0")}
+            </span>
+          </div>
         </div>
-        <div style={{ display: "flex", alignItems: "center", gap: "0.85rem" }}>
-          <span className="mono-kicker" style={{ color: "var(--muted)" }}>
-            Use ← → keys
-          </span>
-          <span className="pitch-counter-pill">
-            {String(i + 1).padStart(2, "0")} / {String(slides).padStart(2, "0")}
-          </span>
-        </div>
-      </div>
 
-      <section className="pitch-frame" key={i}>
-        <header className="pitch-frame-bar">
-          <span className="mono-kicker">
-            <span className="coral-dot" aria-hidden />
-            POSTREADY STUDIO // CONTACT SHEET
-          </span>
-          <span className="mono-kicker" style={{ color: "var(--ink)" }}>
-            {SLIDE_TAGS[i]}
-          </span>
-        </header>
+        <section className="pitch-frame" key={i}>
+          <header className="pitch-frame-bar">
+            <span className="mono-kicker">
+              <span className="console-dots" aria-hidden style={{ marginRight: "0.25rem" }}>
+                <i style={{ background: "#f04438" }} />
+                <i style={{ background: "#d8ff3e" }} />
+                <i style={{ background: "#12b76a" }} />
+              </span>
+              POSTREADY STUDIO // CONTACT SHEET
+            </span>
+            <span className="mono-kicker" style={{ color: "var(--ink)" }}>
+              {SLIDE_TAGS[i]}
+            </span>
+          </header>
 
         <div className="pitch-stage">
           {i === 0 && (
@@ -306,7 +308,7 @@ export default function Pitch() {
                   </span>
                 </li>
                 <li>
-                  <div className="wf-card">
+                  <div className="wf-card blocked">
                     <header>
                       <span className="wf-num">03</span>
                     </header>
@@ -370,11 +372,12 @@ export default function Pitch() {
             />
           ))}
         </div>
-        <button type="button" className="btn-ink-pill" disabled={i === slides - 1} onClick={() => go(i + 1)}>
+        <button type="button" className="btn-coral-pill" disabled={i === slides - 1} onClick={() => go(i + 1)}>
           Continue
           <ArrowRight className="h-4" />
         </button>
       </footer>
-    </div>
+      </div>
+    </section>
   );
 }

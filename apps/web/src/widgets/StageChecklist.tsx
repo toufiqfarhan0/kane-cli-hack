@@ -145,29 +145,32 @@ export function ArtifactCard({
       ? "artifact-media artifact-media--vertical"
       : "artifact-media";
   return (
-    <section className="lab-card lab-card--featured">
-      <div className="artifact-head">
-        <div className="artifact-title-row">
-          <strong style={{ fontFamily: "var(--font-display)", fontSize: "17px" }}>{title}</strong>
-          <span className="artifact-pill">{aspectRatio ?? "Ready"}</span>
-        </div>
-        <a
-          href={href}
-          className="btn-ink-pill"
-          style={{ borderRadius: "10px", padding: "0.45rem 0.9rem" }}
-          title="Download MP4"
-        >
-          <Download className="h-4" />
-          Download MP4
-        </a>
-      </div>
-      {kind === "video" ? (
-        <div className="artifact-stage">
-          <div className={cls}>
-            <video src={`/v1/jobs/${jobId}/artifacts/video`} controls playsInline preload="metadata" />
+    <section className="lab-card lab-card--featured" style={{ padding: 0, overflow: "hidden" }}>
+      <div className="clapper-stripe clapper-stripe--tile" aria-hidden />
+      <div style={{ padding: "1.25rem 1.35rem", display: "flex", flexDirection: "column", gap: "1rem" }}>
+        <div className="artifact-head">
+          <div className="artifact-title-row">
+            <strong style={{ fontFamily: "var(--font-display)", fontSize: "17px" }}>{title}</strong>
+            <span className="artifact-pill">{aspectRatio ?? "Ready"}</span>
           </div>
+          <a
+            href={href}
+            className="btn-coral-pill"
+            style={{ borderRadius: "999px", padding: "0.5rem 1.05rem" }}
+            title="Download MP4"
+          >
+            <Download className="h-4" />
+            Download MP4
+          </a>
         </div>
-      ) : null}
+        {kind === "video" ? (
+          <div className="artifact-stage">
+            <div className={cls}>
+              <video src={`/v1/jobs/${jobId}/artifacts/video`} controls playsInline preload="metadata" />
+            </div>
+          </div>
+        ) : null}
+      </div>
     </section>
   );
 }

@@ -51,7 +51,7 @@ export default function JobPage() {
 
   if (!job) {
     return (
-      <div className="page-job">
+      <div className="page-job page-inner">
         <p className="pipeline-name">Loading run…</p>
       </div>
     );
@@ -80,14 +80,14 @@ export default function JobPage() {
       : "16:9";
 
   return (
-    <div className="page-job">
+    <div className="page-job page-inner">
       <div className="job-toolbar">
         <div className="job-toolbar-left">
           <Link to="/jobs" className="btn-ghost-pill">
             <ArrowLeft className="h-4" />
             Back to Render Library
           </Link>
-          <span className="mono-kicker">JOB / {job.id.slice(0, 8).toUpperCase()}</span>
+          <span className="job-id-pill">JOB / {job.id.slice(0, 8).toUpperCase()}</span>
         </div>
         <div className="job-toolbar-right">
           {live ? (
@@ -199,10 +199,16 @@ export default function JobPage() {
 
           <section className="console-panel">
             <header className="console-bar">
-              <span className="mono-kicker" style={{ color: "#f9f9f7" }}>
-                <span className="coral-dot" aria-hidden />
-                Kane CLI · Live run
-              </span>
+              <div className="console-title-group">
+                <span className="console-dots" aria-hidden>
+                  <i style={{ background: "#ff5f56" }} />
+                  <i style={{ background: "#ffbd2e" }} />
+                  <i style={{ background: "#27c93f" }} />
+                </span>
+                <span className="mono-kicker" style={{ color: "#ffffff" }}>
+                  KANE CLI · LIVE RUN
+                </span>
+              </div>
               <div className="console-actions">
                 {hasComposition ? (
                   <a

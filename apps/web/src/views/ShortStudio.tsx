@@ -231,52 +231,73 @@ export default function Home() {
 
   return (
     <div className="page-generate">
-      <section className="hero-block">
-        <div className="hero-wordmark-wrap">
-          <span className="hero-wordmark-echo" aria-hidden>
-            PostReady
-          </span>
-          <h1 className="pixel-hero">PostReady</h1>
-        </div>
-        <p className="powered-by">
-          <span>Powered by</span>
-          <img className="powered-testmu" src="/testmu-logo.svg" alt="TestMu AI" />
-          <span className="powered-sep" aria-hidden>
-            ·
-          </span>
-          <span className="powered-kane">
-            <img src="/kane-cli.svg" alt="" />
-            Kane CLI
-          </span>
-        </p>
-        <p className="hero-guide">
-          Paste a store product or website link. Kane opens the real page, captures live visuals, and creates a ready-to-post 15s launch video.
-        </p>
-      </section>
+      <section className="cobalt-hero-band">
+        <svg className="hero-target-watermark" viewBox="0 0 100 100" fill="none" aria-hidden>
+          <circle cx="50" cy="50" r="46" stroke="currentColor" strokeDasharray="2 2" strokeWidth="1" />
+          <circle cx="50" cy="50" r="32" stroke="currentColor" strokeWidth="1.5" />
+          <circle cx="50" cy="50" r="18" stroke="currentColor" strokeDasharray="1 1.5" strokeWidth="1" />
+          <line stroke="currentColor" strokeWidth="1" x1="50" x2="50" y1="0" y2="100" />
+          <line stroke="currentColor" strokeWidth="1" x1="0" x2="100" y1="50" y2="50" />
+          <text fill="currentColor" fontFamily="var(--font-mono)" fontSize="6" fontWeight="700" x="53" y="47">
+            REC:15S
+          </text>
+        </svg>
 
-      <form
-        className="wizard-card"
-        onSubmit={(e) => {
-          e.preventDefault();
-        }}
-      >
-        <ol className="wizard-rail" aria-label="Form steps">
-          {STEPS.map((s, i) => {
-            const done = i < stage;
-            const on = i === stage;
-            return (
-              <li key={s.key} className={`wizard-rail-item ${on ? "on" : done ? "done" : ""}`}>
-                <button type="button" className="wizard-rail-btn" onClick={() => i <= stage && setStage(i)}>
-                  <span className="wizard-rail-num">
-                    {done ? <Check className="h-4" strokeWidth={2.5} /> : String(i + 1).padStart(2, "0")}
-                  </span>
-                  <span>{s.label}</span>
-                </button>
-                {i < STEPS.length - 1 ? <span className="wizard-rail-line" aria-hidden /> : null}
-              </li>
-            );
-          })}
-        </ol>
+        <div className="hero-band-inner">
+          <div className="clapper-stripe clapper-stripe--hero" aria-hidden />
+
+          <div className="pop-hero-split">
+            <div className="pop-hero-left">
+              <div className="pop-title-cluster">
+                <h1 className="pixel-hero">PostReady</h1>
+                <span className="sticker-pill sticker-pill--lime">
+                  <span className="status-led" aria-hidden />
+                  15S LAUNCH ENGINE
+                </span>
+              </div>
+
+              <p className="hero-lead-pop">
+                Paste a store product or website link. Kane opens the real page, captures live visuals, and creates a ready-to-post 15s launch video.
+              </p>
+
+              <div className="powered-pop-badge">
+                <span className="powered-pop-label">Powered by</span>
+                <img className="powered-testmu" src="/testmu-logo.svg" alt="TestMu AI" />
+                <span className="powered-sep" aria-hidden>
+                  ·
+                </span>
+                <span className="powered-kane">
+                  <img src="/kane-cli.svg" alt="" />
+                  Kane CLI
+                </span>
+              </div>
+            </div>
+
+            <div className="pop-hero-right">
+              <form
+                className="wizard-card"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                }}
+              >
+                <div className="clapper-stripe clapper-stripe--card" aria-hidden />
+                <ol className="wizard-rail" aria-label="Form steps">
+                  {STEPS.map((s, i) => {
+                    const done = i < stage;
+                    const on = i === stage;
+                    return (
+                      <li key={s.key} className={`wizard-rail-item ${on ? "on" : done ? "done" : ""}`}>
+                        <button type="button" className="wizard-rail-btn" onClick={() => i <= stage && setStage(i)}>
+                          <span className="wizard-rail-num">
+                            {done ? <Check className="h-4" strokeWidth={2.5} /> : String(i + 1).padStart(2, "0")}
+                          </span>
+                          <span>{s.label}</span>
+                        </button>
+                        {i < STEPS.length - 1 ? <span className="wizard-rail-line" aria-hidden /> : null}
+                      </li>
+                    );
+                  })}
+                </ol>
 
         {stage === 0 && (
           <div className="wizard-body">
@@ -554,6 +575,12 @@ export default function Home() {
           </div>
         ) : null}
 
+        <div className="ticket-divider" aria-hidden>
+          <span className="ticket-notch ticket-notch--left" />
+          <span className="ticket-rule" />
+          <span className="ticket-notch ticket-notch--right" />
+        </div>
+
         <div className="wizard-actions">
           <button
             type="button"
@@ -577,6 +604,10 @@ export default function Home() {
           )}
         </div>
       </form>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
