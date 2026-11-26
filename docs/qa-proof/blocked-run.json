@@ -1,0 +1,61 @@
+{
+  "startedAt": "2026-11-26T10:15:12.100Z",
+  "finishedAt": "2026-11-26T10:17:44.410Z",
+  "verdict": "blocked",
+  "changeRequest": "Example guard: Continue accidentally submits Stage 0 form instead of advancing Brief",
+  "agent": "Antigravity",
+  "attempt": 1,
+  "maxAttempts": 3,
+  "changedFiles": [
+    "apps/web/src/views/ShortStudio.tsx",
+    "apps/web/src/theme.css"
+  ],
+  "affectedFlows": [
+    "wizard"
+  ],
+  "unmappedFiles": [],
+  "skippedFlows": [],
+  "flows": [
+    {
+      "flow": "wizard",
+      "status": "failed",
+      "shareUrl": null,
+      "runDir": "qa-specs/runs/wizard-blocked",
+      "reason": "Continue navigated out of wizard or failed to reveal Brief/Launch heading",
+      "failedStep": "Brief to Style",
+      "deltas": [
+        {
+          "key": "launch_heading",
+          "baseline": "Ready to create OLIPOP Vintage Cola",
+          "candidate": null,
+          "verdict": "MISSING"
+        },
+        {
+          "key": "wizard_url",
+          "baseline": "http://localhost:5173/",
+          "candidate": null,
+          "verdict": "MISSING"
+        }
+      ],
+      "infraError": null
+    }
+  ],
+  "unexpectedCount": 2,
+  "timeline": [
+    {
+      "at": "2026-11-26T10:15:12.150Z",
+      "label": "Detected edits in 2 file(s)",
+      "kind": "change"
+    },
+    {
+      "at": "2026-11-26T10:15:12.200Z",
+      "label": "Affected TestMD flow: wizard",
+      "kind": "impact"
+    },
+    {
+      "at": "2026-11-26T10:17:44.410Z",
+      "label": "Kane halted release: wizard failed at Brief to Style",
+      "kind": "fail"
+    }
+  ]
+}
