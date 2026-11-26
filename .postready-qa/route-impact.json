@@ -1,0 +1,22 @@
+{
+  "apps/web/src/views/ShortStudio.tsx": ["landing", "wizard", "validation"],
+  "apps/web/src/views/RenderLibrary.tsx": ["gallery"],
+  "apps/web/src/views/ProductionInspector.tsx": ["gallery"],
+  "apps/web/src/Router.tsx": ["landing", "gallery"],
+  "apps/web/src/views/QaGuardrails.tsx": [],
+  "apps/web/src/views/ProductDeck.tsx": [],
+  "apps/web/public/**": [],
+  "apps/web/src/widgets/**": ["landing", "gallery"],
+  "apps/web/src/theme.css": ["landing", "gallery"],
+  "apps/web/src/bootstrap.tsx": ["landing", "gallery"],
+  "apps/web/index.html": ["landing"],
+  "apps/server/**": ["api_health"],
+  "packages/pipeline/**": [],
+  "packages/orchestrator/**": [],
+  "packages/core/**": [],
+  "packages/qa-gate/**": [],
+  "qa-specs/**": [],
+  ".postready-qa/**": [],
+  ".postready/**": [],
+  "docs/**": []
+}
