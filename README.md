@@ -4,7 +4,7 @@ The product is finished — then you still have to click through it, fight modal
 
 That’s why we built **PostReady**: give a **storefront product link** or a **website / app link**, a plain-English Brief, and your on-screen capture steps — get a finished **15-second `demo.mp4`** with **SRT captions**, **AI voiceover**, sound design, and animated motion scenes. **[Kane CLI](https://www.testmuai.com/support/docs/kane-cli-introduction/)** is the hands on the live web page (and the agent that verifies PostReady itself end to end). Don’t write brittle selectors or record manual walkthroughs. Let Kane walk the live site.
 
-Run locally via [Quick start](#quick-start), jump straight to [Judge PostReady in 60–90 seconds](#judge-postready-in-6090-seconds), or watch the [YouTube Demo Video](https://youtu.be/wCxfWUsdLIE) and read the [dev.to Launch Post](https://dev.to/toufiq_farhan/postready-turn-any-product-or-website-link-into-a-15s-launch-video-using-real-chromium-kane-cli-5a89).
+Run locally via [Quick start](#quick-start), jump straight to [Judge PostReady in 60–90 seconds](#judge-postready-in-6090-seconds), watch the [YouTube Demo Video](https://youtu.be/wCxfWUsdLIE), read the [dev.to Launch Post](https://dev.to/toufiq_farhan/postready-turn-any-product-or-website-link-into-a-15s-launch-video-using-real-chromium-kane-cli-5a89), or view the launch announcements on X ([Post 1](https://x.com/velnoxvwwd/status/2126006136835084313?a=YSWEMDatNr_PE43Xkdk&s=20) · [Post 2](https://x.com/velnoxvwwd/status/2126008937174671710?a=PcJTt204sz9M4AG9SQo&s=20)).
 
 ## Table of contents
 
@@ -12,6 +12,7 @@ Run locally via [Quick start](#quick-start), jump straight to [Judge PostReady i
 - [Who it is for](#who-it-is-for)
 - [Lane 3](#lane-3)
 - [Important links](#important-links)
+- [Screenshots](#screenshots)
 - [Built with](#built-with)
 - [Prerequisites](#prerequisites)
 - [Quick start](#quick-start)
@@ -104,6 +105,20 @@ PostReady is built for **Lane 3 — Agents with hands on the real web**: Kane CL
 | **Launch Write-up (dev.to)** | [PostReady on dev.to](https://dev.to/toufiq_farhan/postready-turn-any-product-or-website-link-into-a-15s-launch-video-using-real-chromium-kane-cli-5a89) |
 | **X (Twitter) Posts** | [Post 1](https://x.com/velnoxvwwd/status/2126006136835084313?a=YSWEMDatNr_PE43Xkdk&s=20) · [Post 2](https://x.com/velnoxvwwd/status/2126008937174671710?a=PcJTt204sz9M4AG9SQo&s=20) |
 | **GitHub Repository** | [`toufiqfarhan0/kane-cli-hack`](https://github.com/toufiqfarhan0/kane-cli-hack) |
+
+## Screenshots
+
+| Short Studio (`/`) | Production Inspector (`/jobs/:id`) |
+| --- | --- |
+| ![Short Studio](docs/screenshots/short-studio.png) | ![Production Inspector](docs/screenshots/production-inspector.jpg) |
+
+| QA Guardrails (`/verified`) | Problem & Workflow Comparison (`/pitch`) |
+| --- | --- |
+| ![QA Guardrails](docs/screenshots/qa-guardrails.jpg) | ![Problem Comparison](docs/screenshots/problem-comparison.jpg) |
+
+| Six-Stage Architecture (`/pitch`) | Kane CLI Stack (`/pitch`) |
+| --- | --- |
+| ![Architecture Slide](docs/screenshots/architecture-slide.png) | ![Kane CLI Stack](docs/screenshots/kane-cli-stack.png) |
 
 ## Built with
 
