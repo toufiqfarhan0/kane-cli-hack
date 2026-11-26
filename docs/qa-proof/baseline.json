@@ -1,0 +1,121 @@
+{
+  "commit": "uncommitted",
+  "createdAt": "2026-11-26T12:01:58.472Z",
+  "flows": {
+    "wizard": {
+      "test": "qa-specs/creator_wizard_test.md",
+      "status": "passed",
+      "state": {
+        "AI voiceover": "present",
+        "Choose format, look, and voice": "present",
+        "Director AI": "present",
+        "Video size": "present",
+        "add_step_present": "true",
+        "ai_voiceover_present": "true",
+        "choose_format_look_and_voice_present": "true",
+        "create_product_short_present": "true",
+        "director_ai_present": "true",
+        "drinkolipop_com_present": "true",
+        "generate_page_url_check": "http://localhost:5173/",
+        "launch_heading": "Ready to create OLIPOP Vintage Cola",
+        "product_video_show_question_present": "true",
+        "steps_for_kane_to_capture_present": "true",
+        "video_about_field_visible": "true",
+        "video_size_present": "true",
+        "wizard_rail_brief_present": "true",
+        "wizard_rail_launch_present": "true",
+        "wizard_rail_product_present": "true",
+        "wizard_rail_style_present": "true",
+        "wizard_url": "http://localhost:5173/"
+      },
+      "runDir": "C:\\Users\\toufi/.testmuai/kaneai/sessions\\a079f1e8-6bbd-41f7-9ec5-2e58a4bf6a5e\\runs\\3",
+      "shareUrl": null,
+      "durationS": 279
+    },
+    "validation": {
+      "test": "qa-specs/url_validation_test.md",
+      "status": "passed",
+      "state": {
+        "brief_step_not_open": "false",
+        "product_step_visible": "true",
+        "product_url_field_empty": "0",
+        "url_required_error_visible": "true",
+        "url_required_message": "Please enter a product link."
+      },
+      "runDir": "C:\\Users\\toufi/.testmuai/kaneai/sessions\\539076a4-2e4c-4f07-bd40-04c2c6a8c97c\\runs\\0",
+      "shareUrl": null,
+      "durationS": 77
+    },
+    "landing": {
+      "test": "qa-specs/landing_page_test.md",
+      "status": "passed",
+      "state": {
+        "Kane CLI present": "true",
+        "PostReady heading visible": "true",
+        "TestMu AI present": "true",
+        "continue_button_visible": "true",
+        "default_product": "OLIPOP Vintage Cola",
+        "header links": "Short Studio, Render Library, QA Guardrails, Product Deck",
+        "kane_cli_present": "true",
+        "postready_heading_visible": "true",
+        "product_deck_header_present": "true",
+        "product_name": "OLIPOP Vintage Cola",
+        "product_name_field_value_check": "OLIPOP Vintage Cola",
+        "product_url": "https://drinkolipop.com/products/vintage-cola",
+        "product_url_field_value_check": "https://drinkolipop.com/products/vintage-cola",
+        "qa_guardrails_header_present": "true",
+        "render_library_header_present": "true",
+        "short_studio_header_present": "true",
+        "store_product_present": "true",
+        "storefront_product_url_text_present": "true",
+        "testmu_ai_present": "true",
+        "video type options": "Store Product, Website & App",
+        "website_and_app_present": "true"
+      },
+      "runDir": "C:\\Users\\toufi/.testmuai/kaneai/sessions\\75b25332-3141-4c71-aff3-f34d6c947a96\\runs\\1",
+      "shareUrl": null,
+      "durationS": 69
+    },
+    "gallery": {
+      "test": "qa-specs/render_library_test.md",
+      "status": "passed",
+      "state": {
+        "back_to_render_library_present": "true",
+        "gallery_heading": "Render Library",
+        "job_id_url_check": "http://localhost:5173/jobs/b6f21afd-d2e2-4a49-8955-8428a4931ee4",
+        "job_tile_visible": "true",
+        "kane_cli_present": "true",
+        "no_shorts_yet_present": "false",
+        "render_library_present": "true",
+        "render_preview_present": "true",
+        "short_present": "true",
+        "total_renders_present": "true",
+        "url_contains_jobs": "http://localhost:5173/jobs",
+        "walkthrough_present": "false",
+        "website_present": "true"
+      },
+      "runDir": "C:\\Users\\toufi/.testmuai/kaneai/sessions\\766ea17a-a61c-4fe1-b7f8-f39e4bed7221\\runs\\1",
+      "shareUrl": null,
+      "durationS": 141
+    },
+    "api_health": {
+      "test": "qa-specs/health_check_test.md",
+      "status": "passed",
+      "state": {
+        "database_present": "true",
+        "health_ok": "true",
+        "page_contains_7233": "true",
+        "page_contains_database": "true",
+        "page_contains_ok": "true",
+        "page_contains_slots_free": "true",
+        "page_contains_temporal": "true",
+        "page_contains_true": "true",
+        "slots_free_present": "true",
+        "temporal_present": "true"
+      },
+      "runDir": "C:\\Users\\toufi/.testmuai/kaneai/sessions\\a1e449ab-8fcf-47b7-8409-fed44fcbac08\\runs\\0",
+      "shareUrl": null,
+      "durationS": 96
+    }
+  }
+}
